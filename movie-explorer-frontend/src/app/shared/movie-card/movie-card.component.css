@@ -1,0 +1,25 @@
+.movie-card:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+  transition: transform 0.5s;
+}
+.movie-title {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: center;
+  display: block;
+  width: 100%;
+}
+
+.movie-title::after {
+  content: attr(title);
+  visibility: hidden;
+  display: inline-block;
+  white-space: nowrap;
+  width: 0;
+}
+
+.movie-title::after {
+  text-align: start; /* Align text to start on overflow */
+}

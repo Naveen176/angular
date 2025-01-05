@@ -1,0 +1,21 @@
+<div class="bg-primary text-white d-flex p-3 align-items-center">
+  <p class="app-title justify-content-start w-25 fs-4">{{title}}</p>
+  <p class="justify-content-end w-100">
+    <me-app-nav-bar [menuItems]="homeMenu" (onMenuItemClick)="onMenuClick($event)"></me-app-nav-bar>
+  </p>
+</div>
+<div class="bg-dark text-white">
+  <section class="popular header">
+    <div class="d-flex justify-content-between">
+        <p class="justify-content-start fs-5 m-2">&nbsp;Latest Releases</p>
+        <p class="justify-content-end fs-6 m-2">view more &nbsp;</p>
+    </div>
+    <div class="movieList row bg-dark">
+      @for (movie of moviesList.results; track movie) {
+      <div class="col-2 mb-2">
+        <me-app-movie-card [movie]="movie" (movieSelected)="onMovieSelect($event)"></me-app-movie-card>
+      </div>
+      }
+    </div>
+  </section>
+</div>

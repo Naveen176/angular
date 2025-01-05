@@ -1,0 +1,7 @@
+<div class="nav-bar d-flex justify-content-end">
+  @for(item of menuItems; track item) {
+  <div class="nav-item" (click)="onMenuItemClick(item)">
+    <p class="m-2 fs-5">{{ item }}</p>
+  </div>
+  }
+</div>
