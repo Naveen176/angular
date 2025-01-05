@@ -1,0 +1,20 @@
+<div class="movie-card overflow-hidden w-100 border border-info rounded" (click)="onMovieClick(movie)" (mouseenter)="showMore = true" (mouseleave)="showMore = false">
+  <img
+    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmrnN5RTHfoO6ad_T8mBKu8TaKsvzq2i06BA&s"
+    alt="movie-img"
+    id="{{ movie.id }}"
+    class="movie-img rounded img-fluid"
+  />
+  <div class="d-flex justify-content-center text-start bold">
+    <p class="movie-title text-white ">
+      <strong class="text-truncate fw-bold p-1">{{ movie.title }}</strong>
+    </p>
+  </div>
+  @if(showMore){
+  <div class="more-details d-flex justify-content-evenly">
+    <p>{{ movie.original_language.toUpperCase() }} &nbsp;</p>
+    <p>{{ movie.release_date.substring(0,4) }}</p>
+    <p>{{ movie.adult ? "18+" : "13+" }}</p>
+  </div>
+  }
+</div>

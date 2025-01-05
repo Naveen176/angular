@@ -1,0 +1,6 @@
+.nav-item:hover{
+    cursor: pointer;
+    background-color: rgb(65, 65, 236);
+    color: white;
+    border-radius: 10%;
+}
