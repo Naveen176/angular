@@ -7,14 +7,14 @@
   />
   <div class="d-flex justify-content-center text-start bold">
     <p class="movie-title text-white ">
-      <strong class="text-truncate fw-bold p-1">{{ movie.title }}</strong>
+      <span class="text-truncate">{{ movie.title }}</span>
     </p>
   </div>
   @if(showMore){
-  <div class="more-details d-flex justify-content-evenly">
-    <p>{{ movie.original_language.toUpperCase() }} &nbsp;</p>
-    <p>{{ movie.release_date.substring(0,4) }}</p>
-    <p>{{ movie.adult ? "18+" : "13+" }}</p>
+  <div class="more-details d-flex justify-content-center">
+    <span class="fs-6">{{ movie.original_language.toUpperCase() }} &nbsp;</span>
+    <span class="fs-6">{{ movie.release_date.substring(0,4) }} &nbsp;</span>
+    <span class="fs-6">{{ movie.adult ? "A 18+" : "U/A 13+" }}</span>
   </div>
   }
 </div>
