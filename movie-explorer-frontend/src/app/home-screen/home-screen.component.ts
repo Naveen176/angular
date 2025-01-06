@@ -1,21 +1,52 @@
 import { Component, OnInit } from '@angular/core';
 import { MovieCard } from '../models/movie-card';
 import { MovieListService } from '../services/movie-list.service';
-import { MovieList } from '../models/movie-list';
+import {
+  NowPlayingMovies,
+  PopularMovies,
+  TopRatedMovies,
+  UpcomingMovies,
+} from '../models/movie-list';
 import { MovieCardComponent } from '../shared/movie-card/movie-card.component';
 import { NavBarComponent } from '../shared/nav-bar/nav-bar.component';
 import { HOME_MENU } from '../constants/menu';
+import { Router, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-home-screen',
-  imports: [MovieCardComponent, NavBarComponent],
+  imports: [MovieCardComponent, NavBarComponent,RouterOutlet],
   templateUrl: './home-screen.component.html',
   styleUrl: './home-screen.component.css',
 })
 export class HomeScreenComponent implements OnInit {
+  
   title: string = 'Movie Explorer';
   homeMenu: string[] = HOME_MENU;
-  moviesList: MovieList = {
+
+  nowPlaying: NowPlayingMovies = {
+    dates: { maximum: '', minimum: '' },
+    page: 0,
+    total_results: 0,
+    total_pages: 0,
+    results: [],
+  };
+
+  popular: PopularMovies = {
+    page: 0,
+    total_results: 0,
+    total_pages: 0,
+    results: [],
+  };
+
+  topRated: TopRatedMovies = {
+    page: 0,
+    total_results: 0,
+    total_pages: 0,
+    results: [],
+  };
+
+  upcoming: UpcomingMovies = {
+    dates: { maximum: '', minimum: '' },
     page: 0,
     total_results: 0,
     total_pages: 0,
@@ -33,11 +64,28 @@ export class HomeScreenComponent implements OnInit {
     release_date: '',
   };
 
-  constructor(private movieListService: MovieListService) {}
+  constructor(private router:Router,private movieListService: MovieListService) {}
 
-  ngOnInit() {
-    this.movieListService.getMovieList().subscribe((data) => {
-      this.moviesList = data;
+  ngOnInit(): void {
+    this.movieListService.getNowPlaying().subscribe((data) => {
+      if (data.body) {
+        this.nowPlaying = data.body;
+      }
+    });
+    this.movieListService.getPopular().subscribe((data) => {
+      if (data.body) {
+        this.popular = data.body;
+      }
+    });
+    this.movieListService.getTopRated().subscribe((data) => {
+      if (data.body) {
+        this.topRated = data.body;
+      }
+    });
+    this.movieListService.getUpcoming().subscribe((data) => {
+      if (data.body) {
+        this.upcoming = data.body;
+      }
     });
   }
 
@@ -48,5 +96,18 @@ export class HomeScreenComponent implements OnInit {
   onMovieSelect($event: MovieCard) {
     this.selectedMovie = $event;
     console.log($event);
+  }
+
+  goToContinueWatching() {
+    this.router.navigate(['home/continue-watching']);
+  }
+  goToLatestReleases() {
+    this.router.navigate(['home/latest-releases']);
+  }
+  goToTopRated() {
+    this.router.navigate(['home/top-rated']);
+  }
+  goToUpComing() {
+    this.router.navigate(['home/upcoming-releases']);
   }
 }
