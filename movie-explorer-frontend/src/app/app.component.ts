@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { MovieListService } from './services/movie-list.service';
+import { MovieListService } from './home-screen/movie-list.service';
 import { HttpClientModule } from '@angular/common/http';
 @Component({
   selector: 'me-app-root',
