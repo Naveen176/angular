@@ -1,11 +1,28 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { MovieListService } from '../movie-list.service';
+import { NowPlayingMovies } from '../../models/movie-list';
+import { MovieCardComponent } from "../../shared/movie-card/movie-card.component";
+import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-continue-watching',
-  imports: [],
+  selector: 'me-app-continue-watching',
+  imports: [MovieCardComponent],
   templateUrl: './continue-watching.component.html',
   styleUrl: './continue-watching.component.css'
 })
-export class ContinueWatchingComponent {
+export class ContinueWatchingComponent implements OnInit {
+  nowplaying:NowPlayingMovies = {} as NowPlayingMovies;
+  constructor(private movieService:MovieListService, private router:Router) { }
 
+  ngOnInit(): void {
+    this.movieService.getNowPlaying().subscribe((response)=>{
+      this.nowplaying = response;
+    });
+  }
+  selectedMovie($event: any) {
+    console.log($event);
+  }
+  back(){
+    this.router.navigate(['/home']);
+  }
 }

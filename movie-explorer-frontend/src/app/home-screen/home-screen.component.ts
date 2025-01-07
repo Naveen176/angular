@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MovieCard } from '../models/movie-card';
-import { MovieListService } from '../services/movie-list.service';
+import { MovieListService } from './movie-list.service';
 import {
   NowPlayingMovies,
   PopularMovies,
@@ -14,12 +14,11 @@ import { Router, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-home-screen',
-  imports: [MovieCardComponent, NavBarComponent,RouterOutlet],
+  imports: [MovieCardComponent, NavBarComponent, RouterOutlet],
   templateUrl: './home-screen.component.html',
   styleUrl: './home-screen.component.css',
 })
 export class HomeScreenComponent implements OnInit {
-  
   title: string = 'Movie Explorer';
   homeMenu: string[] = HOME_MENU;
 
@@ -64,28 +63,30 @@ export class HomeScreenComponent implements OnInit {
     release_date: '',
   };
 
-  constructor(private router:Router,private movieListService: MovieListService) {}
+  constructor(
+    private router: Router,
+    private movieListService: MovieListService
+  ) {}
 
   ngOnInit(): void {
+    this.movieListService.fetchNowPlaying();
     this.movieListService.getNowPlaying().subscribe((data) => {
-      if (data.body) {
-        this.nowPlaying = data.body;
-      }
+      this.nowPlaying = data;
     });
+
+    this.movieListService.fetchPopular();
     this.movieListService.getPopular().subscribe((data) => {
-      if (data.body) {
-        this.popular = data.body;
-      }
+      this.popular = data;
     });
+
+    this.movieListService.fetchTopRated();
     this.movieListService.getTopRated().subscribe((data) => {
-      if (data.body) {
-        this.topRated = data.body;
-      }
+      this.topRated = data;
     });
+
+    this.movieListService.fetchUpcoming();
     this.movieListService.getUpcoming().subscribe((data) => {
-      if (data.body) {
-        this.upcoming = data.body;
-      }
+      this.upcoming = data;
     });
   }
 
