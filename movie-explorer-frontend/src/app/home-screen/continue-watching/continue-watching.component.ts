@@ -18,6 +18,7 @@ export class ContinueWatchingComponent implements OnInit {
     this.movieService.getNowPlaying().subscribe((response)=>{
       this.nowplaying = response;
     });
+    window.scrollTo(0, 0);
   }
   selectedMovie($event: any) {
     console.log($event);

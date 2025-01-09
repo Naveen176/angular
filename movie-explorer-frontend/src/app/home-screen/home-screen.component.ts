@@ -21,7 +21,7 @@ import { Router, RouterOutlet } from '@angular/router';
 export class HomeScreenComponent implements OnInit {
   title: string = 'Movie Explorer';
   homeMenu: string[] = HOME_MENU;
-
+  movieId:string = '';
   nowPlaying: NowPlayingMovies = {
     dates: { maximum: '', minimum: '' },
     page: 0,

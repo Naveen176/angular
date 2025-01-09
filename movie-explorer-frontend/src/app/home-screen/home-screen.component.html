@@ -1,19 +1,30 @@
 <div class="bg-primary text-white d-flex p-3 align-items-center mb-2">
-  <p class="app-title justify-content-start w-25 fs-4">{{title}}</p>
+  <p class="app-title justify-content-start w-25 fs-4">{{ title }}</p>
   <p class="justify-content-end w-100">
-    <me-app-nav-bar [menuItems]="homeMenu" (onMenuItemClick)="onMenuClick($event)"></me-app-nav-bar>
+    <me-app-nav-bar
+      [menuItems]="homeMenu"
+      (onMenuItemClick)="onMenuClick($event)"
+    ></me-app-nav-bar>
   </p>
 </div>
 <div class="bg-dark text-white">
   <section class="continue-watching header">
     <div class="d-flex justify-content-between">
-        <p class="justify-content-start fs-5 m-2">&nbsp;Continue watching</p>
-        <p class="justify-content-end fs-6 m-2 viewMore" (click)="goToContinueWatching()">view more &nbsp;<i class="bi bi-arrow-right"></i></p>
+      <p class="justify-content-start fs-5 m-2">&nbsp;Continue watching</p>
+      <p
+        class="justify-content-end fs-6 m-2 viewMore"
+        (click)="goToContinueWatching()"
+      >
+        view more &nbsp;<i class="bi bi-arrow-right"></i>
+      </p>
     </div>
     <div class="movieList row bg-dark m-2">
       @for (movie of nowPlaying.results.slice(0,6); track movie) {
       <div class="col-2 mb-2">
-        <me-app-movie-card [movie]="movie" (movieSelected)="onMovieSelect($event)"></me-app-movie-card>
+        <me-app-movie-card
+          [movie]="movie"
+          (movieSelected)="onMovieSelect($event)"
+        ></me-app-movie-card>
       </div>
       }
     </div>
@@ -22,46 +33,100 @@
 <div class="bg-dark text-white">
   <section class="latest-releases header">
     <div class="d-flex justify-content-between">
-        <p class="justify-content-start fs-5 m-2">&nbsp;Latest Releases</p>
-        <p class="justify-content-end fs-6 m-2 viewMore " (click)="goToLatestReleases()">view more &nbsp;<i class="bi bi-arrow-right"></i></p>
+      <p class="justify-content-start fs-5 m-2">&nbsp;Latest Releases</p>
+      <p
+        class="justify-content-end fs-6 m-2 viewMore"
+        (click)="goToLatestReleases()"
+      >
+        view more &nbsp;<i class="bi bi-arrow-right"></i>
+      </p>
     </div>
+    @if(popular.results && popular.results.length > 0) {
     <div class="movieList row bg-dark m-2">
       @for (movie of popular.results.slice(0,6); track movie) {
       <div class="col-2 mb-2">
-        <me-app-movie-card [movie]="movie" (movieSelected)="onMovieSelect($event)"></me-app-movie-card>
+        <me-app-movie-card
+          [movie]="movie"
+          (movieSelected)="onMovieSelect($event)"
+        ></me-app-movie-card>
       </div>
       }
     </div>
+    } @if (!popular.results) {
+    <div class="row w-100 h-100 align-items-center justify-content-center">
+      <div class="col-md-12 text-center mt-5">
+        <span class="mt-5">
+          <div class="spinner-border" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+        </span>
+      </div>
+    </div>
+    }
   </section>
 </div>
 <div class="bg-dark text-white">
   <section class="top-rated header">
     <div class="d-flex justify-content-between">
-        <p class="justify-content-start fs-5 m-2">&nbsp;Top Rated</p>
-        <p class="justify-content-end fs-6 m-2 viewMore" (click)="goToTopRated()">view more &nbsp;<i class="bi bi-arrow-right"></i></p>
+      <p class="justify-content-start fs-5 m-2">&nbsp;Top Rated</p>
+      <p class="justify-content-end fs-6 m-2 viewMore" (click)="goToTopRated()">
+        view more &nbsp;<i class="bi bi-arrow-right"></i>
+      </p>
     </div>
+    @if(topRated.results && topRated.results.length > 0) {
     <div class="movieList row bg-dark m-2">
       @for (movie of topRated.results.slice(0,6); track movie) {
       <div class="col-2 mb-2">
-        <me-app-movie-card [movie]="movie" (movieSelected)="onMovieSelect($event)"></me-app-movie-card>
+        <me-app-movie-card
+          [movie]="movie"
+          (movieSelected)="onMovieSelect($event)"
+        ></me-app-movie-card>
       </div>
       }
     </div>
+    } @if (!topRated.results) {
+    <div class="row w-100 h-100 align-items-center justify-content-center">
+      <div class="col-md-12 text-center mt-5">
+        <span class="mt-5">
+          <div class="spinner-border" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+        </span>
+      </div>
+    </div>
+    }
   </section>
 </div>
 <div class="bg-dark text-white">
   <section class="upcoming header">
     <div class="d-flex justify-content-between">
-        <p class="justify-content-start fs-5 m-2">&nbsp;Upcoming</p>
-        <p class="justify-content-end fs-6 m-2 viewMore" (click)="goToUpComing()">view more &nbsp;<i class="bi bi-arrow-right"></i></p>
+      <p class="justify-content-start fs-5 m-2">&nbsp;Upcoming</p>
+      <p class="justify-content-end fs-6 m-2 viewMore" (click)="goToUpComing()">
+        view more &nbsp;<i class="bi bi-arrow-right"></i>
+      </p>
     </div>
+    @if(upcoming.results && upcoming.results.length > 0) {
     <div class="movieList row bg-dark m-2">
       @for (movie of upcoming.results.slice(0,6); track movie) {
       <div class="col-2 mb-2">
-        <me-app-movie-card [movie]="movie" (movieSelected)="onMovieSelect($event)"></me-app-movie-card>
+        <me-app-movie-card
+          [movie]="movie"
+          (movieSelected)="onMovieSelect($event)"
+        ></me-app-movie-card>
       </div>
       }
     </div>
+    } @if (!upcoming.results) {
+    <div class="row w-100 h-100 align-items-center justify-content-center">
+      <div class="col-md-12 text-center mt-5">
+        <span class="mt-5">
+          <div class="spinner-border" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+        </span>
+      </div>
+    </div>
+    }
   </section>
 </div>
 <router-outlet></router-outlet>

@@ -1,17 +1,30 @@
-<div class="upcoming-movies overflow-hidden">
-    <div class="row p-3 bg-light">
-      <div class="col-12 d-flex align-items-center justify-content-between">
-        <p class="btn btn-primary" (click)="back()">back</p>
-        <h2 class="fs-4">Upcoming Movies</h2>
-        <p class="btn btn-primary">accuont-info</p>
-      </div>
-    </div>
-    <div class="movieList row bg-dark p-2">
-      @for (movie of upcoming.results; track movie) {
-      <div class="col-2 mb-2">
-        <me-app-movie-card [movie]="movie" (movieSelected)="selectedMovie($event)"></me-app-movie-card>
-      </div>
-      }
+<div class="upcoming-movies overflow-hidden m-2">
+  <div class="row p-3 bg-light">
+    <div class="col-12 d-flex align-items-center justify-content-between">
+      <p class="btn btn-primary" (click)="back()">back</p>
+      <h2 class="fs-4">Upcoming Movies</h2>
+      <p class="btn btn-primary">accuont-info</p>
     </div>
   </div>
-  
+  <div class="movieList row bg-dark">
+    @if(upcoming.results){ @for (movie of upcoming.results; track movie) {
+    <div class="col-2 mb-2">
+      <me-app-movie-card
+        [movie]="movie"
+        (movieSelected)="selectedMovie($event)"
+      ></me-app-movie-card>
+    </div>
+    } }
+  </div>
+  @if (!upcoming.results) {
+  <div class="row w-100 h-100 align-items-center justify-content-center">
+    <div class="col-md-12 text-center mt-5">
+      <span class="mt-5">
+        <div class="spinner-border" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+      </span>
+    </div>
+  </div>
+  }
+</div>

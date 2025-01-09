@@ -12,12 +12,14 @@ import { MovieCardComponent } from "../../shared/movie-card/movie-card.component
 })
 export class UpcomingReleasesComponent implements OnInit {
   upcoming:UpcomingMovies = {} as UpcomingMovies;
-  constructor(private movieService:MovieListService, private router:Router) { }
+  constructor(private movieService:MovieListService, private router:Router) { 
+  }
 
   ngOnInit(): void {
     this.movieService.getNowPlaying().subscribe((response)=>{
       this.upcoming = response;
     });
+    window.scrollTo(0, 0);
   }
   selectedMovie($event: any) {
     console.log($event);
