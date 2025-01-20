@@ -3,10 +3,11 @@ import { UpcomingMovies } from '../../models/movie-list';
 import { MovieListService } from '../movie-list.service';
 import { Router } from '@angular/router';
 import { MovieCardComponent } from "../../shared/movie-card/movie-card.component";
+import { LoaderComponent } from "../../shared/loader/loader.component";
 
 @Component({
   selector: 'app-upcoming-releases',
-  imports: [MovieCardComponent],
+  imports: [MovieCardComponent, LoaderComponent],
   templateUrl: './upcoming-releases.component.html',
   styleUrl: './upcoming-releases.component.css'
 })

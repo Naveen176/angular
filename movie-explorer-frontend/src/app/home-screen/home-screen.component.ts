@@ -9,12 +9,13 @@ import {
 } from '../models/movie-list';
 import { MovieCardComponent } from '../shared/movie-card/movie-card.component';
 import { NavBarComponent } from '../shared/nav-bar/nav-bar.component';
+import { LoaderComponent } from '../shared/loader/loader.component';
 import { HOME_MENU } from '../constants/menu';
 import { Router, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-home-screen',
-  imports: [MovieCardComponent, NavBarComponent, RouterOutlet],
+  imports: [MovieCardComponent, NavBarComponent, RouterOutlet, LoaderComponent],
   templateUrl: './home-screen.component.html',
   styleUrl: './home-screen.component.css',
 })

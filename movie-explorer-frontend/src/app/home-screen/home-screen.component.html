@@ -7,6 +7,7 @@
     ></me-app-nav-bar>
   </p>
 </div>
+@if(nowPlaying.results && nowPlaying.results.length > 0){
 <div class="bg-dark text-white">
   <section class="continue-watching header">
     <div class="d-flex justify-content-between">
@@ -30,6 +31,9 @@
     </div>
   </section>
 </div>
+} @if (!nowPlaying.results) {
+<me-app-loader></me-app-loader>
+} @if(popular.results && popular.results.length > 0) {
 <div class="bg-dark text-white">
   <section class="latest-releases header">
     <div class="d-flex justify-content-between">
@@ -53,18 +57,13 @@
       }
     </div>
     } @if (!popular.results) {
-    <div class="row w-100 h-100 align-items-center justify-content-center">
-      <div class="col-md-12 text-center mt-5">
-        <span class="mt-5">
-          <div class="spinner-border" role="status">
-            <span class="visually-hidden">Loading...</span>
-          </div>
-        </span>
-      </div>
-    </div>
+    <me-app-loader></me-app-loader>
     }
   </section>
 </div>
+} @if(!popular.results) {
+<me-app-loader></me-app-loader>
+} @if(topRated.results && topRated.results.length > 0) {
 <div class="bg-dark text-white">
   <section class="top-rated header">
     <div class="d-flex justify-content-between">
@@ -84,19 +83,12 @@
       </div>
       }
     </div>
-    } @if (!topRated.results) {
-    <div class="row w-100 h-100 align-items-center justify-content-center">
-      <div class="col-md-12 text-center mt-5">
-        <span class="mt-5">
-          <div class="spinner-border" role="status">
-            <span class="visually-hidden">Loading...</span>
-          </div>
-        </span>
-      </div>
-    </div>
     }
   </section>
 </div>
+} @if (!topRated.results) {
+<me-app-loader></me-app-loader>
+} @if(upcoming.results && upcoming.results.length > 0) {
 <div class="bg-dark text-white">
   <section class="upcoming header">
     <div class="d-flex justify-content-between">
@@ -116,17 +108,10 @@
       </div>
       }
     </div>
-    } @if (!upcoming.results) {
-    <div class="row w-100 h-100 align-items-center justify-content-center">
-      <div class="col-md-12 text-center mt-5">
-        <span class="mt-5">
-          <div class="spinner-border" role="status">
-            <span class="visually-hidden">Loading...</span>
-          </div>
-        </span>
-      </div>
-    </div>
     }
   </section>
 </div>
+} @if(!upcoming.results) {
+<me-app-loader></me-app-loader>
+}
 <router-outlet></router-outlet>

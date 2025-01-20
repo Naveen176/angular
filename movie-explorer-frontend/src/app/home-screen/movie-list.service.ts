@@ -100,8 +100,6 @@ export class MovieListService {
   }
 
   fetchMovieById(id: string) {
-    console.log(id)
-    console.log(MOVIE_DETAIL + id);
     return this.http.get<MovieDetail>(MOVIE_DETAIL + id, {headers: this.options.headers,observe: 'response'});  
   }
 }

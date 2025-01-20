@@ -1,15 +1,58 @@
-<div class="movie-detail">
-  <div class="row">
+<div
+  class="movie-detail justify-content-center align-items-center p-2 overflow-hidden w-100 bg-success"
+>
+  <div class="row justify-content-center">
     <div class="col-md-4">
-      <img [src]="movie" class="img-fluid" alt="Movie Poster" />
+      <img [src]="movie.poster_path" class="img-fluid" alt="Movie Poster" />
     </div>
+    <a [href]="movie.homepage" target="_blank">{{ movie.title }}</a>
     <div class="col-md-8 m-2">
-      <h2>{{ movie.title }}</h2>
-      <div class="d-flex">
-        <span class="fs-5"><strong>Genre : </strong></span>
+      <figure class="text-center">
+        <blockquote class="blockquote fs-2">
+          <p>{{ movie.title }}</p>
+        </blockquote>
+        <figcaption class="blockquote-footer">
+          <cite title="tag-line">{{ movie.tagline }}</cite>
+        </figcaption>
+      </figure>
+      <div class="d-flex align-items-center">
+        <span class="fs-6">{{ movie.runtime }} min</span>
         @for (genre of movie.genres; track genre) {
-        <span class="fs-6 m-1">{{ genre.name }}</span>
+        <span class="fs-6 m-1">{{ genre.name }} | </span>
         }
+        <span class="fs-5">{{ movie.adult ? "A 18+ " : "U/A 13+" }}</span>
+      </div>
+      <div class="d-flex align-items-center">
+        <span class="fs-6"><strong>Origin Country : </strong></span>
+        <span class="fs-6 m-1">{{ movie.origin_country }} |</span>
+        <span class="fs-6"><strong>Original Language : </strong></span>
+        <span class="fs-6 m-1">{{ movie.original_language }} | </span>
+        <span class="fs-6"><strong>Release Date : </strong></span>
+        <span class="fs-6 m-1">{{ movie.release_date }}</span>
+      </div>
+      <div class="d-flex align-items-center">
+        <span class="fs-6"><strong>Languages : </strong></span>
+        @for (lang of movie.spoken_languages; track lang) {
+        <span class="fs-6 m-1">{{ lang.english_name }} | </span>
+        }
+      </div>
+      <div class="d-flex align-items-center">
+        <span class="fs-6"><strong>Budget : </strong></span>
+        <span class="fs-6 m-1">{{ movie.budget }} | </span>
+        <span class="fs-6"><strong>Revenue : </strong></span>
+        <span class="fs-6 m-1">{{ movie.revenue }} | </span>
+        <span class="fs-6"><strong>Rating : </strong></span>
+        <span class="fs-6 m-1">{{ movie.vote_average }}</span>
+      </div>
+      <div class="d-flex align-items-center">
+        <span class="fs-6"><strong>Production : </strong></span>
+        @for(prod of movie.production_companies;track prod){
+        <span class="fs-6"> {{ prod.name }} |&nbsp;</span>
+        }
+      </div>
+      <div class="overview text-justify">
+        <span class="fs-5"><strong>Overview : </strong></span>
+        <span class="fs-6 m-1">{{ movie.overview }}</span>
       </div>
     </div>
   </div>

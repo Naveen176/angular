@@ -3,10 +3,11 @@ import { MovieListService } from '../movie-list.service';
 import { NowPlayingMovies } from '../../models/movie-list';
 import { MovieCardComponent } from "../../shared/movie-card/movie-card.component";
 import { Router } from '@angular/router';
+import { LoaderComponent } from "../../shared/loader/loader.component";
 
 @Component({
   selector: 'me-app-continue-watching',
-  imports: [MovieCardComponent],
+  imports: [MovieCardComponent, LoaderComponent],
   templateUrl: './continue-watching.component.html',
   styleUrl: './continue-watching.component.css'
 })
