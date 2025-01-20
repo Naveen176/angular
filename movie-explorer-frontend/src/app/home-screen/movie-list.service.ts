@@ -1,6 +1,8 @@
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import {
+  API_KEY,
+  MOVIE_DETAIL,
   NOW_PLAYING_MOVIES,
   POPULAR_MOVIES,
   TOP_RATED_MOVIES,
@@ -13,6 +15,7 @@ import {
   UpcomingMovies,
 } from '../models/movie-list';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { MovieDetail } from '../models/movie-detail';
 
 @Injectable({
   providedIn: 'root',
@@ -36,8 +39,7 @@ export class MovieListService {
       method: 'GET',
       headers: {
         accept: 'application/json',
-        Authorization:
-          'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzNThiNWEzY2Y3MWE4OWVlMTgxOGY2NTA3MzRkNWY5MyIsIm5iZiI6MTczNTk3MTg4Ny45NjEsInN1YiI6IjY3NzhkNDJmZjZiYzk3MTZlODcyNDc0OCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.yzBSrUH4hp_PZLLVVFMBYKBCMnBs7aBvrzMwGmq7aoU',
+        Authorization: API_KEY,
       },
     };
   }
@@ -95,5 +97,9 @@ export class MovieListService {
   }
   getUpcoming(): Observable<UpcomingMovies> {
     return this.upcomingMovies.asObservable();
+  }
+
+  fetchMovieById(id: string) {
+    return this.http.get<MovieDetail>(MOVIE_DETAIL + id, {headers: this.options.headers,observe: 'response'});  
   }
 }

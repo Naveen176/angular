@@ -18,6 +18,7 @@ export class TopRatedComponent implements OnInit {
     this.movieService.getTopRated().subscribe((response)=>{
       this.topRated = response;
     });
+    window.scrollTo(0, 0);
   }
   selectedMovie($event: any) {
     console.log($event);

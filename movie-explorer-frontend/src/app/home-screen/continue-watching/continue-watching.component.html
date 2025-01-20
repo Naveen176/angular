@@ -6,11 +6,18 @@
       <p class="btn btn-primary">accuont-info</p>
     </div>
   </div>
+  @if(nowplaying.results && nowplaying.results.length > 0) {
   <div class="movieList row bg-dark p-2">
     @for (movie of nowplaying.results; track movie) {
     <div class="col-2 mb-2">
-      <me-app-movie-card [movie]="movie" (movieSelected)="selectedMovie($event)"></me-app-movie-card>
+      <me-app-movie-card
+        [movie]="movie"
+        (movieSelected)="selectedMovie($event)"
+      ></me-app-movie-card>
     </div>
     }
   </div>
+  } @if (!nowplaying.results) {
+  <me-app-loader></me-app-loader>
+  }
 </div>
