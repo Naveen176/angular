@@ -24,7 +24,7 @@ export class MovieCardComponent {
   @Output() movieSelected = new EventEmitter<MovieCard>();
 
   onMovieClick(movie: MovieCard) {
-    console.log("shwmore :",this.showMore)
+    // console.log("shwmore :",this.showMore)
     this.movieSelected.emit(movie);
   }
 }

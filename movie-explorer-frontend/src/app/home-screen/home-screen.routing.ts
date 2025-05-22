@@ -4,7 +4,7 @@ import { HomeScreenComponent } from './home-screen.component';
 export const HOME_SCREEN_ROUTES: Routes = [
   {
     path: '',
-    component: HomeScreenComponent
+    component: HomeScreenComponent,
   },
   {
     path: 'continue-watching',
@@ -36,6 +36,14 @@ export const HOME_SCREEN_ROUTES: Routes = [
     loadComponent: () =>
       import('./upcoming-releases/upcoming-releases.component').then(
         (m) => m.UpcomingReleasesComponent
+      ),
+  },
+  {
+    path: 'movie-detail/:id',
+    // pathMatch: 'full',
+    loadComponent: () =>
+      import('../shared/movie-detail/movie-detail.component').then(
+        (m) => m.MovieDetailComponent
       ),
   },
 ];

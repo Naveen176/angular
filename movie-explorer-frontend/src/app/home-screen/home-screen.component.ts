@@ -97,7 +97,7 @@ export class HomeScreenComponent implements OnInit {
 
   onMovieSelect($event: MovieCard) {
     this.selectedMovie = $event;
-    console.log($event);
+    this.router.navigate(['home/movie-detail',$event.id]);
   }
 
   goToContinueWatching() {
